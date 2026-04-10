@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Bebas+Neue&family=Playfair+Display:wght@400;500;600;700;800;900&family=Roboto+Mono:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --bg: #08080a;
+  --bg-card: #111114;
+  --bg-elevated: #18181c;
+  --border: #2a2a30;
+  --text: #f0f0f5;
+  --text-secondary: #8e8e9a;
+  --text-muted: #55555f;
+  --gold: #d4a853;
+  --gold-light: #f0d48a;
+  --gold-dim: rgba(212, 168, 83, 0.12);
+  --green: #34c759;
+  --red: #ff3b5c;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body, #root {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  height: 100dvh;
+  width: 100vw;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: inherit;
+}
+
+input {
+  font-family: 'Inter', -apple-system, sans-serif;
+}
