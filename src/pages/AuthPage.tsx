@@ -2,8 +2,6 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuthActions } from '@convex-dev/auth/react'
 
-const DEMO_EMAIL = 'demo@grail.app'
-const DEMO_PASSWORD = 'grail-demo-2025'
 
 export default function AuthPage() {
   const navigate = useNavigate()
@@ -33,16 +31,10 @@ export default function AuthPage() {
     setDemoLoading(true)
     setError('')
     try {
-      // Try sign in first, fall back to sign up
-      try {
-        await signIn('password', { email: DEMO_EMAIL, password: DEMO_PASSWORD, flow: 'signIn' })
-      } catch {
-        await signIn('password', { email: DEMO_EMAIL, password: DEMO_PASSWORD, flow: 'signUp' })
-      }
-      navigate('/onboarding/players')
+      await signIn('anonymous')
+      // Auth state updates automatically — routing handles navigation
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : 'Demo sign-in failed')
-    } finally {
+      setError(err instanceof Error ? err.message : 'Demo sign-in failed — please try again')
       setDemoLoading(false)
     }
   }
@@ -81,6 +73,20 @@ export default function AuthPage() {
             Track your NBA card collection. Every set, every card, all in one place.
           </p>
         </div>
+
+        {/* Error display */}
+        {error && (
+          <div style={{
+            padding: '12px 16px',
+            borderRadius: 10,
+            background: 'rgba(255,59,92,0.1)',
+            border: '1px solid rgba(255,59,92,0.3)',
+            color: 'var(--red)',
+            fontSize: 13,
+          }}>
+            {error}
+          </div>
+        )}
 
         {/* Demo shortcut */}
         <button
@@ -143,7 +149,6 @@ export default function AuthPage() {
               outline: 'none',
             }}
           />
-          {error && <p style={{ color: 'var(--red)', fontSize: 13 }}>{error}</p>}
           <button
             type="submit"
             disabled={busy}
