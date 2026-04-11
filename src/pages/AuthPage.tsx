@@ -19,7 +19,7 @@ export default function AuthPage() {
     setLoading(true)
     try {
       await signIn('password', { email, password, flow: isSignUp ? 'signUp' : 'signIn' })
-      navigate('/onboarding/players')
+      navigate('/onboarding/players', { replace: true })
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Something went wrong')
     } finally {
@@ -32,7 +32,7 @@ export default function AuthPage() {
     setError('')
     try {
       await signIn('anonymous')
-      // Auth state updates automatically — routing handles navigation
+      navigate('/onboarding/players')
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Demo sign-in failed — please try again')
       setDemoLoading(false)
